@@ -4,6 +4,8 @@ import { switchMap, map } from 'rxjs/operators';
 import { app, googleProvider } from '../../firebase/firebase';
 import { from } from 'rxjs';
 
+import { setItem } from '../../utils/LocalStorage';
+
 //actions
 export const GOOGLE_AUTH_LOGIN = 'GOOGLE_AUTH_LOGIN';
 export const GOOGLE_AUTH_LOGOUT = 'GOOGLE_AUTH_LOGOUT';
@@ -18,23 +20,31 @@ const loginWithGoogleSuccess = (payload) => ({ type: GOOGLE_LOGIN_SUCCESS, paylo
 export const loginEpic = action$ => action$.pipe(
     ofType(GOOGLE_AUTH_LOGIN),
     switchMap(() => from(app.auth().signInWithPopup(googleProvider)).pipe(
-            map(response => loginWithGoogleSuccess(response.credential.accessToken))
+            map(response => {
+                const { user, additionalUserInfo } = response;
+                const authUser = {
+                    profile: additionalUserInfo.profile,
+                    uid: user.uid,
+                };
+                setItem("auth", authUser);
+                return loginWithGoogleSuccess(authUser);
+            }),
         )
     ),
 );
 
 //reducer
 const defaultState = {
-    userToken: '',
+    authUser: null,
 }
 
 const auth = (state = defaultState, action) => {
     switch(action.type) {
         case GOOGLE_LOGIN_SUCCESS:
-            const { payload } = action;
+            const authUser = action.payload;
             return {
                 ...state,
-                userToken: payload,
+                authUser,
             }
         default:
             return state;

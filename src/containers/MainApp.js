@@ -1,31 +1,42 @@
 import React, { Component } from 'react';
-import AtomButton from '../components/atoms/AtomButton';
 
-import { loginWithGoogle } from '../redux/modules/auth';
+//@reach/router
+import { Router, navigate } from '@reach/router';
 
+//redux
 import { connect } from 'react-redux';
 
+//app router
+import LoginPage from '../components/pages/LoginPage';
+import UpdateProfile from '../components/pages/UpdateProfile';
+
 class MainApp extends Component {
+    componentDidUpdate(prevProps) {
+        if(prevProps.authUser !== this.props.authUser) {
+            navigate(`/app/update_profile`);
+        }
+    }
+
     render() {
         return (
             <div>
-                <AtomButton
-                    clicked={() => this.props.loginWithGoogle()}
-                >
-                    Login With Google Account
-                </AtomButton>
+                <Router>
+                    <LoginPage path="/" />
+                    <UpdateProfile path="app/update_profile" />
+                </Router>
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-  return {
-  }
+    return {
+        authUser: state.auth.authUser,
+    }
 }
 
 const mapDispatchToProps = {
-    loginWithGoogle
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainApp);
