@@ -14,10 +14,12 @@ const config = {
 
 const app = firebase.initializeApp(config);
 const base = Rebase.createClass(app.database());
+const database = firebase.database();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 export {
     app,
     base,
+    database,
     googleProvider
 };

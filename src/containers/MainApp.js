@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 //app router
 import LoginPage from '../components/pages/LoginPage';
 import UpdateProfile from '../components/pages/UpdateProfile';
+import ChatApp from '../components/pages/ChatApp';
 
 class MainApp extends Component {
     componentDidUpdate(prevProps) {
@@ -23,6 +24,7 @@ class MainApp extends Component {
                 <Router>
                     <LoginPage path="/" />
                     <UpdateProfile path="app/update_profile" />
+                    <ChatApp path="/app/chat" />
                 </Router>
             </div>
         );

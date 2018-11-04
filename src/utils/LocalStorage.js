@@ -8,3 +8,7 @@ export const getItem = (key) => {
     const valueObject = JSON.parse(jsonValue);
     return valueObject;
 }
+
+export const clearLocalStorage = () => {
+    window.localStorage.clear();
+}
