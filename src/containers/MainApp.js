@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 
-//@reach/router
-import { Router } from '@reach/router';
-
-//app router
-import ChatAppTemplate from '../components/templates/ChatAppTemplate';
+//app router;
+import LoginTemplate from '../components/templates/LoginTemplate';
 
 class MainApp extends Component {
   render() {
     return (
       <div>
-        <Router>
-          <ChatAppTemplate path="/" />
-        </Router>
+        <LoginTemplate />
       </div>
     );
   }

@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MainApp from './containers/MainApp';
+import { Provider } from 'react-redux';
+import { configureStoreWithFirebase } from './redux/configureStore';
+
 import * as serviceWorker from './serviceWorker';
 
-import { Provider } from 'react-redux';
-import configureStore from './redux/configureStore';
-
-
-const store = configureStore();
+const store = configureStoreWithFirebase();
 
 ReactDOM.render(
   <Provider store={store}>
