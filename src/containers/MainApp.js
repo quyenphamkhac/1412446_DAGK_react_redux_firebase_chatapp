@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 //@reach/router
 import { Router } from '@reach/router';
 
-//redux
-import { connect } from 'react-redux';
-
 //app router
 import ChatAppTemplate from '../components/templates/ChatAppTemplate';
 
@@ -21,14 +18,4 @@ class MainApp extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    authUser: state.auth.authUser,
-  }
-}
-
-const mapDispatchToProps = {
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainApp);
+export default MainApp;
