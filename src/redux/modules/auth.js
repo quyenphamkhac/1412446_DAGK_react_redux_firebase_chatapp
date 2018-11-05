@@ -18,37 +18,37 @@ const loginWithGoogleSuccess = (payload) => ({ type: GOOGLE_LOGIN_SUCCESS, paylo
 
 //epic
 export const loginEpic = action$ => action$.pipe(
-    ofType(GOOGLE_AUTH_LOGIN),
-    switchMap(() => from(app.auth().signInWithPopup(googleProvider)).pipe(
-            map(response => {
-                const { user, additionalUserInfo } = response;
-                const authUser = {
-                    profile: additionalUserInfo.profile,
-                    uid: user.uid,
-                };
-                setItem("auth", authUser);
-                return loginWithGoogleSuccess(authUser);
-            }),
-        )
-    ),
+  ofType(GOOGLE_AUTH_LOGIN),
+  switchMap(() => from(app.auth().signInWithPopup(googleProvider)).pipe(
+    map(response => {
+      const { user, additionalUserInfo } = response;
+      const authUser = {
+        profile: additionalUserInfo.profile,
+        uid: user.uid,
+      };
+      setItem("auth", authUser);
+      return loginWithGoogleSuccess(authUser);
+    }),
+  )
+  ),
 );
 
 //reducer
 const defaultState = {
-    authUser: null,
+  authUser: null,
 }
 
 const auth = (state = defaultState, action) => {
-    switch(action.type) {
-        case GOOGLE_LOGIN_SUCCESS:
-            const authUser = action.payload;
-            return {
-                ...state,
-                authUser,
-            }
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case GOOGLE_LOGIN_SUCCESS:
+      const authUser = action.payload;
+      return {
+        ...state,
+        authUser,
+      }
+    default:
+      return state;
+  }
 }
 
 export default auth;

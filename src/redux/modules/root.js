@@ -4,9 +4,9 @@ import { combineReducers } from 'redux';
 import auth, { loginEpic } from './auth';
 
 export const rootEpic = combineEpics(
-    loginEpic
+  loginEpic
 );
 
 export const rootReducer = combineReducers({
-    auth
+  auth
 });

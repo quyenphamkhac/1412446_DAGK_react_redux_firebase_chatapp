@@ -9,26 +9,26 @@ import { connect } from 'react-redux';
 
 
 class LoginPage extends Component {
-    render() {
-        return (
-            <div>
-                <LoginButton
-                    clicked={() => this.props.loginWithGoogle()}
-                >
-                    Login With Google Account
-                </LoginButton>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <LoginButton
+          clicked={() => this.props.loginWithGoogle()}
+        >
+          Login With Google Account
+        </LoginButton>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-    }
+  return {
+  }
 }
 
 const mapDispatchToProps = {
-    loginWithGoogle
+  loginWithGoogle
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

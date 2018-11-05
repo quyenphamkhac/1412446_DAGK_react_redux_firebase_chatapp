@@ -4,12 +4,12 @@ import 'firebase/database';
 import Rebase from 're-base';
 
 const config = {
-    apiKey: "AIzaSyB68-QsZrMcVg7bRlvGFQ2E9RR5v_dFESs",
-    authDomain: "react-firebase-chatapp.firebaseapp.com",
-    databaseURL: "https://react-firebase-chatapp.firebaseio.com",
-    projectId: "react-firebase-chatapp",
-    storageBucket: "react-firebase-chatapp.appspot.com",
-    messagingSenderId: "859490043085"
+  apiKey: "AIzaSyB68-QsZrMcVg7bRlvGFQ2E9RR5v_dFESs",
+  authDomain: "react-firebase-chatapp.firebaseapp.com",
+  databaseURL: "https://react-firebase-chatapp.firebaseio.com",
+  projectId: "react-firebase-chatapp",
+  storageBucket: "react-firebase-chatapp.appspot.com",
+  messagingSenderId: "859490043085"
 };
 
 const app = firebase.initializeApp(config);
@@ -18,8 +18,8 @@ const database = firebase.database();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 export {
-    app,
-    base,
-    database,
-    googleProvider
+  app,
+  base,
+  database,
+  googleProvider
 };
