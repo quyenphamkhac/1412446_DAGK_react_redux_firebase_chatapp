@@ -3,6 +3,8 @@ import { database } from '../../firebase/firebase';
 import { getItem, clearLocalStorage } from '../../utils/LocalStorage';
 import { navigate } from '@reach/router';
 
+import { Menu } from 'semantic-ui-react';
+
 class ChatApp extends Component {
     logout = () => {
         const { uid } = getItem("auth"); 
