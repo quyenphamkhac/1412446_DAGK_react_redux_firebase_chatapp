@@ -3,15 +3,24 @@ import React from 'react';
 import Avatar from '../atoms/Avatar';
 import About from './About';
 
+import { Link } from 'react-router-dom';
+
 const friend = (props) => (
   <React.Fragment>
-    <li className="clearfix">
-      <Avatar src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
-      <About 
-        online={props.online}
-        status={props.status}
-        name={props.name}
-      />
+    <li className="clearfix" style={{cursor: 'pointer'}}>
+      <Link to={{
+          pathname: `/app/${props.uid}`,
+          state: props,
+        }} 
+        style={{color: 'white'}}
+      >
+        <Avatar src={props.avatar} alt="avatar" />
+        <About 
+          online={props.online}
+          status={props.status}
+          name={props.name}
+        />
+      </Link>
     </li>
   </React.Fragment>
 );

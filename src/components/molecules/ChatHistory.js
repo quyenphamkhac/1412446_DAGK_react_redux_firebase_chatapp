@@ -4,24 +4,21 @@ import Message from './Message';
 
 class ChatHistory extends Component {
   render() {
+    const { messages, myUid, friendUid } = this.props;
+    const messageList = messages && myUid && friendUid && Object.keys(messages).map((key, index) => (
+      <Message
+        key={index}
+        isMyMessage={messages[key].senderUid === myUid}
+        isFirstMessage={index === 0}
+        sender={messages[key].sender}
+        timestamp={messages[key].timestamp}
+        message={messages[key].message}
+      />
+    ))
     return (
       <div className="chat-history">
         <ul>
-          <Message
-            isMyMessage={false}
-            isFirstMessage={true}
-            sender="Olia"
-            timestamp="10:10 AM, Today"
-            message="Hi Vincent, how are you? How is the project coming along?"
-          />
-
-          <Message 
-            isMyMessage={true}
-            isFirstMessage={false}
-            sender="Vincent"
-            timestamp="10:12 AM, Today"
-            message="Are we meeting today? Project has been already finished and I have results to show you."
-          />
+          {messageList}
         </ul>
       </div>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const button = (props) => (
-  <button>{props.children}</button>
+  <button onClick={props.clicked}>{props.children}</button>
 );
 
 export default button;

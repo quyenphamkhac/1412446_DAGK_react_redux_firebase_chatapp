@@ -41,6 +41,10 @@ body {
     font-size: 14px;
   }
   
+  input::placeholder {
+    color: whitesmoke;
+  }
+
   .fa-search {
     position: relative;
     left: -25px;
@@ -72,6 +76,13 @@ body {
   .status {
     color: $gray;
   }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid whitesmoke;
+  }
   
 }
 
@@ -90,6 +101,13 @@ body {
     
     img {
       float: left;
+    }
+
+    .avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 2px solid whitesmoke;
     }
     
     .chat-about {
@@ -248,4 +266,15 @@ body {
 	content: " ";
 	clear: both;
 	height: 0;
+}
+
+.no-chat {
+  width: 490px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #94C2ED;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  margin-left: 260px;
 }
