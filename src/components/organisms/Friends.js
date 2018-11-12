@@ -22,7 +22,7 @@ const friends = (props) => {
 
   //sort list user by condition
   //1. my stars list
-  let myStars = favorites && me && Object.keys(favorites[me.uid]).filter(key => {
+  let myStars = favorites && me && favorites[me.uid] && Object.keys(favorites[me.uid]).filter(key => {
     return favorites[me.uid][key] === true;
   });
   myStars = myStars ? myStars : [];
