@@ -41,21 +41,38 @@ class ChatView extends Component {
     this.setState({message: ''});
   }
 
+  addFriendToStars = (currentState, myUid, friendUid) => {
+    const { firebase } = this.props;
+    let star = {};
+    star[friendUid] = !currentState;
+    firebase.update(`stars/${myUid}`, star);
+  }
+
   render() {
     const { message } = this.state;
-    const { location, auth, chat } = this.props;
+    const { location, auth, chat, stars } = this.props;
     const friend = location && location.state;
     const me = !isLoaded(auth) ? null : auth;
     const chatUid = me && friend && this.createChatUid(me.uid, friend.uid);
     const allChatMessages = !isLoaded(chat) ? null : chat;
-
     const messages = allChatMessages && allChatMessages[chatUid];
+
+    //check stars
+    const starList = !isLoaded(stars) ? null : stars;
+    const myStars = starList && me && starList[me.uid];
+
+    const isStar = myStars && friend && myStars[friend.uid] === true ? true : false; 
+
     return (
       <div className="chat">
         <ChatHeader 
           friend={friend.name}
           status={friend.status}
           avatar={friend.avatar}
+          myUid={me.uid}
+          friendUid={friend.uid}
+          isStar={isStar}
+          onStarClick={() => this.addFriendToStars(isStar, me.uid, friend.uid)}
         />
         <ChatHistory 
           messages={messages}
@@ -78,9 +95,11 @@ class ChatView extends Component {
 export default compose(
   firebaseConnect([
     'chat',
+    'stars',
   ]),
   connect(({ firebase: { data, auth } }) => ({ 
     chat: data.chat,
+    stars: data.stars,
     auth,
   }))
 )(ChatView);

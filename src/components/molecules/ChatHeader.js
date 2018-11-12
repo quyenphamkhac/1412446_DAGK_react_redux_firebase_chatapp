@@ -11,7 +11,11 @@ const chatHeader = (props) => (
       friend={props.friend}
       status={props.status}
     />
-    <Icon icon="fa fa-star" />
+    <Icon 
+      icon="fa fa-star"
+      isStar={props.isStar}
+      clicked={props.onStarClick}
+    />
   </div>
 );
 
