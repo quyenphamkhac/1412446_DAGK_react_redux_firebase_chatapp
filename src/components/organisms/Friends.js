@@ -14,7 +14,7 @@ const getLastOnlineTime = (uid, sessions) => {
 }
 
 const friends = (props) => {
-  const { data, presence, sessions, stars, auth } = props;
+  const { data, presence, sessions, stars, auth, search } = props;
   const onlines = !isLoaded(presence) ? null : presence;
   const userSessions = !isLoaded(sessions) ? null : sessions;
   const me = !isLoaded(auth) ? null : auth;
@@ -43,7 +43,15 @@ const friends = (props) => {
   //5. merge low and high
   let friends = [...highPriority, ...lowPriority];
 
-  const friendList = userSessions && onlines && friends && data && me && friends.filter(user => user !== me.uid).map((key) => (
+  const friendList = userSessions && onlines && friends && data && me && friends
+    .filter(user => {
+      let isMatch = true;
+      if(search) {
+        isMatch = data[user].displayName.toLowerCase().includes(search.toLowerCase());
+      }
+      return user !== me.uid && isMatch;
+    })
+    .map((key) => (
       <Friend 
         key={key} 
         uid={key} 
