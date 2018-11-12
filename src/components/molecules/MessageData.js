@@ -5,7 +5,7 @@ import Icon from '../atoms/Icon';
 import moment from 'moment';
 
 const messageData = (props) => (
-  <div className={`message-data ${props.isMyMessage ? "" : "align-right"}`}>
+  <div className={`message-data ${props.isMyMessage ? "" : "align-right"}`} >
     {props.isMyMessage ? (
       <React.Fragment>
         <span className="message-data-name"><Icon icon="fa fa-circle online" /> {props.sender}</span>
